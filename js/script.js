@@ -1,8 +1,8 @@
-function Player(name,winscore){
-	this.name=name;
+function Player(){
+	this.name="";
 	this.totalScore=0;
 	this.sessionScore=0;
-	this.winscore=winscore;
+	this.winscore=0;
 }
 
 // roll method
