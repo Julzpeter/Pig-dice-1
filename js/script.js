@@ -29,14 +29,43 @@ Player.prototype.hold=function(){
 	return this.totalScore;
 }
 
+var playerOne = new Player();
+var playerTwo = new Player(); 
 
 var startGame = function(playerOneName,playerTwoName,winScore){
-    var playerOne = new Player(playerOneName,winScore);
-    var playerTwo = new Player(playerTwoName,winscore); 
+    playerOne.name=playerOneName;
+    playerTwo.name=playerTwoName;
+    playerOne.winscore=playerTwo.winscore=winScore;
     $(".player-registration").hide();
+    $(".player1name").text(playerOne.name);
+    $(".player2name").text(playerTwo.name);
     $(".game-play").show();
 
 }
+
+$("#p1-roll-button").click(
+    function(event){
+
+    }
+)
+
+$("#p1-hold-button").click(
+    function(event){
+
+    }
+)
+
+$("#p2-roll-button").click(
+    function(event){
+
+    }
+)
+
+$("#p2-hold-button").click(
+    function(event){
+        
+    }
+)
 
 $("#form_players").submit(
     function(event){
