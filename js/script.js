@@ -11,10 +11,6 @@ Player.prototype.roll= function(){
 	var rolledDice=Math.floor(Math.random()*6+1);
 	if(rolledDice>1){
 		this.sessionScore+=rolledDice;
-		if((this.sessionScore+this.totalScore)>=this.winscore){
-            // declare user as winner
-			return 0;
-		}
 	}
 	else{
 		this.sessionScore=0;
@@ -43,15 +39,21 @@ var startGame = function(playerOneName,playerTwoName,winScore){
 
 }
 
+var endGame = function(){
+
+}
+
+
 $("#p1-roll-button").click(
     function(event){
         var rolledDice=playerOne.roll();
         $(".p1-rolled").text("You rolled:"+rolledDice);
+        $(".p1-session-score").text("Your session score:"+playerOne.sessionScore);
         if(rolledDice>1){
 
         }
         else{
-
+            $("#p1-hold-button").trigger("click");
         }
     }
 )
@@ -60,11 +62,12 @@ $("#p2-roll-button").click(
     function(event){
         var rolledDice=playerTwo.roll();
         $(".p2-rolled").text("You rolled:"+rolledDice);
+        $(".p2-session-score").text("Your session score:"+playerTwo.sessionScore);
         if(rolledDice>1){
 
         }
         else{
-
+            $("#p2-hold-button").trigger("click");
         }
     }
 )
@@ -72,12 +75,13 @@ $("#p2-roll-button").click(
 $("#p1-hold-button").click(
     function(event){
         playerOne.hold();
-        $("#panel-player1").addClass("panel-disable")
+        $("#panel-player1").addClass("panel-disable");
         $("#p1-roll-button").addClass("button-disable");
         $("#p1-hold-button").addClass("button-disable");
         $("#panel-player2").removeClass("panel-disable")
         $("#p2-roll-button").removeClass("button-disable");
         $("#p2-hold-button").removeClass("button-disable");
+        $(".p1-score").text("Your score is: "+playerOne.totalScore);
     }
 )
 
@@ -90,6 +94,7 @@ $("#p2-hold-button").click(
         $("#panel-player1").removeClass("panel-disable")
         $("#p1-roll-button").removeClass("button-disable");
         $("#p1-hold-button").removeClass("button-disable");
+        $(".p2-score").text("Your score is: "+playerTwo.totalScore);
     }
 )
 
