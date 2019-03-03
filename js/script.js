@@ -45,25 +45,51 @@ var startGame = function(playerOneName,playerTwoName,winScore){
 
 $("#p1-roll-button").click(
     function(event){
+        var rolledDice=playerOne.roll();
+        $(".p1-rolled").text("You rolled:"+rolledDice);
+        if(rolledDice>1){
 
-    }
-)
+        }
+        else{
 
-$("#p1-hold-button").click(
-    function(event){
-
+        }
     }
 )
 
 $("#p2-roll-button").click(
     function(event){
+        var rolledDice=playerTwo.roll();
+        $(".p2-rolled").text("You rolled:"+rolledDice);
+        if(rolledDice>1){
 
+        }
+        else{
+
+        }
+    }
+)
+
+$("#p1-hold-button").click(
+    function(event){
+        playerOne.hold();
+        $("#panel-player1").addClass("panel-disable")
+        $("#p1-roll-button").addClass("button-disable");
+        $("#p1-hold-button").addClass("button-disable");
+        $("#panel-player2").removeClass("panel-disable")
+        $("#p2-roll-button").removeClass("button-disable");
+        $("#p2-hold-button").removeClass("button-disable");
     }
 )
 
 $("#p2-hold-button").click(
     function(event){
-        
+        playerTwo.hold();
+        $("#panel-player2").addClass("panel-disable");
+        $("#p2-roll-button").addClass("button-disable");
+        $("#p2-hold-button").addClass("button-disable");
+        $("#panel-player1").removeClass("panel-disable")
+        $("#p1-roll-button").removeClass("button-disable");
+        $("#p1-hold-button").removeClass("button-disable");
     }
 )
 
