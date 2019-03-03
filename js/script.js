@@ -30,6 +30,24 @@ Player.prototype.hold=function(){
 }
 
 
+var startGame = function(playerOneName,playerTwoName,winScore){
+    var playerOne = new Player(playerOneName,winScore);
+    var playerTwo = new Player(playerTwoName,winscore); 
+    $(".player-registration").hide();
+    $(".game-play").show();
+
+}
+
+$("#form_players").submit(
+    function(event){
+        event.preventDefault();
+        var playerOneName = $("#player_one_name").val();
+        var playerTwoName = $("#player_two_name").val();
+        var winScore = $("#winscore").val();
+        return startGame(playerOneName,playerTwoName,winScore);
+    }
+)
+
 $(document).ready(
     function(){
         $(".game-play").hide();
