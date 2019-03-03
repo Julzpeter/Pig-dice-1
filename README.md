@@ -4,17 +4,18 @@
 - Lydia Makini
 
 ## Description
-- {Description}
+- This is a web site that implements the game of pig dice.
+- Visit this [link](https://en.wikipedia.org/wiki/Pig_(dice_game)) to learn how the game is played.
 
 ## Setup/Installation requirements
 
-- Clone  or download and unzip the repository from github, [{repo-link}]({repo-link}). 
-- If you have git Use this command `{repo-link}` to clone the project.
+- Clone  or download and unzip the repository from github, [https://github.com/lydiah2015/Pig-dice.git](https://github.com/lydiah2015/Pig-dice.git). 
+- If you have git Use this command `git clone https://github.com/lydiah2015/Pig-dice.git` to clone the project.
 - Open index.html via your web browser.
 
 ## Live Demo
 To view the page click on the link below
-* {gh-pages-link}]({gh-pages-link})
+* [https://lydiah2015.github.io/Pig-dice/](https://lydiah2015.github.io/Pig-dice/)
 
 ## Technologies Used
 - HTML
