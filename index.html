@@ -19,7 +19,20 @@
 
         <!--PLAYERS REGISTRATION SECTION-->
         <div class="container player-registration">
-
+            <div class="col-md-4 col-md-offset-4">
+                <form id="form_players">
+                    <div class="form-group playerOneName">
+                        <input type="text" id="player_one_name" placeholder="player one name" class="form-control">
+                    </div>
+                    <div class="form-group playerTwoName">
+                        <input type="text" id="player_two_name"  placeholder="player two name"class="form-control">
+                    </div>
+                    <div class="form-group winscore">
+                        <input type="number" placeholder="Win score" id="winscore" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Play</button>
+                </form>
+            </div>
         </div>
 
         <!--GAME PLAY SECTION-->
@@ -30,7 +43,7 @@
 
         <!--PAGE FOOTER-->
         <div class="container footer">
-            g
+            
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
