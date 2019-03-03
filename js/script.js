@@ -43,6 +43,7 @@ var startGame = function(playerOneName,playerTwoName){
 }
 
 var winGame = function(player){
+    
     $(".game-play").prepend(
         `
         <div class="container">
@@ -62,7 +63,7 @@ var winGame = function(player){
     $(".game-play").append(
         `
         <div class="container">
-            <button class="btn btn-primary" onclick="restartGame()">Restart Game</button>
+            <a href="./index.html" class="btn btn-primary" >Restart Game</a>
         </div>
         `
     );
