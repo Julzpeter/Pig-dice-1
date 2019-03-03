@@ -2,7 +2,6 @@ function Player(){
 	this.name="";
 	this.totalScore=0;
 	this.sessionScore=0;
-	this.winscore=0;
 }
 
 // roll method
@@ -27,25 +26,27 @@ Player.prototype.hold=function(){
 
 var playerOne = new Player();
 var playerTwo = new Player(); 
+var winScore=0;
 
-
-var startGame = function(playerOneName,playerTwoName,winScore){
+var startGame = function(playerOneName,playerTwoName){
     playerOne.name=playerOneName;
     playerTwo.name=playerTwoName;
-    playerOne.winscore=playerTwo.winscore=winScore;
     $(".player-registration").hide();
     $(".player1name").text(playerOne.name);
     $(".player2name").text(playerTwo.name);
     $(".game-play").show();
+    return 0;
 
 }
 
 var winGame = function(player){
-    $(".game-window").prepend(
+    $(".game-play").prepend(
         `
-        <div class="wingame alert alert-success alert-dismissible">
-            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <h3>`+player.name+` won the game with a score of `+player.totalScore+`</h3>
+        <div class="container">
+            <div class="wingame alert alert-success alert-dismissible">
+                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <h3>`+player.name+` won the game with a score of `+player.totalScore+`</h3>
+            </div>
         </div>
         `
     );
@@ -55,6 +56,22 @@ var winGame = function(player){
     $("#panel-player2").addClass("panel-disable");
     $("#p2-roll-button").addClass("button-disable");
     $("#p2-hold-button").addClass("button-disable");
+    $(".game-play").append(
+        `
+        <div class="container">
+            <button class="btn btn-primary" onclick="restartGame()">Restart Game</button>
+        </div>
+        `
+    );
+    return 0;
+}
+
+var restartGame = function(){
+    $(".player-registration").show();
+    $(".game-play").hide();
+    playerOne= new Player();
+    playerTwo = new Player();
+    return 0;
 }
 
 
@@ -63,11 +80,14 @@ $("#p1-roll-button").click(
         var rolledDice=playerOne.roll();
         $(".p1-rolled").text("You rolled:"+rolledDice);
         $(".p1-session-score").text("Your session score:"+playerOne.sessionScore);
-        if(rolledDice===1){$("#p1-hold-button").trigger("click");}
-        if(playerOne.sessionScore+playerOne.totalScore >= playerOne.winScore){
-            return winGame(playerOne)
+        if(rolledDice===1){
+            return $("#p1-hold-button").trigger("click");
         }
-
+        if((playerOne.sessionScore+playerOne.totalScore) >= winScore){
+            playerOne.totalScore=playerOne.sessionScore+playerOne.totalScore;
+            return winGame(playerOne);
+        }
+        return 0;
     }
 )
 
@@ -76,10 +96,14 @@ $("#p2-roll-button").click(
         var rolledDice=playerTwo.roll();
         $(".p2-rolled").text("You rolled:"+rolledDice);
         $(".p2-session-score").text("Your session score:"+playerTwo.sessionScore);
-        if(rolledDice===1){ $("#p2-hold-button").trigger("click");}
-        if(playerTwo.sessionScore+playerTwo.totalScore >= playerTwo.winScore){
-            return winGame(playerTwo)
+        if(rolledDice===1){ 
+            return $("#p2-hold-button").trigger("click");
         }
+        if((playerTwo.sessionScore+playerTwo.totalScore) >= winScore){
+            playerTwo.totalScore=playerTwo.sessionScore+playerTwo.totalScore;
+            return winGame(playerTwo);
+        }
+        return 0;
     }
 )
 
@@ -93,6 +117,7 @@ $("#p1-hold-button").click(
         $("#p2-roll-button").removeClass("button-disable");
         $("#p2-hold-button").removeClass("button-disable");
         $(".p1-score").text("Your score is: "+playerOne.totalScore);
+        return 0;
     }
 )
 
@@ -106,6 +131,7 @@ $("#p2-hold-button").click(
         $("#p1-roll-button").removeClass("button-disable");
         $("#p1-hold-button").removeClass("button-disable");
         $(".p2-score").text("Your score is: "+playerTwo.totalScore);
+        return 0;
     }
 )
 
@@ -114,8 +140,8 @@ $("#form_players").submit(
         event.preventDefault();
         var playerOneName = $("#player_one_name").val();
         var playerTwoName = $("#player_two_name").val();
-        var winScore = $("#winscore").val();
-        return startGame(playerOneName,playerTwoName,winScore);
+        winScore = $("#winscore").val();
+        return startGame(playerOneName,playerTwoName);
     }
 )
 
