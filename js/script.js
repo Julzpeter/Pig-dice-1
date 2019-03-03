@@ -35,6 +35,9 @@ var startGame = function(playerOneName,playerTwoName){
     $(".player1name").text(playerOne.name);
     $(".player2name").text(playerTwo.name);
     $(".game-play").show();
+    $("#panel-player2").addClass("panel-disable");
+    $("#p2-roll-button").addClass("button-disable");
+    $("#p2-hold-button").addClass("button-disable");
     return 0;
 
 }
