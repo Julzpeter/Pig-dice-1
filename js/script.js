@@ -28,6 +28,7 @@ Player.prototype.hold=function(){
 var playerOne = new Player();
 var playerTwo = new Player(); 
 
+
 var startGame = function(playerOneName,playerTwoName,winScore){
     playerOne.name=playerOneName;
     playerTwo.name=playerTwoName;
@@ -39,8 +40,21 @@ var startGame = function(playerOneName,playerTwoName,winScore){
 
 }
 
-var endGame = function(){
-
+var winGame = function(player){
+    $(".game-window").prepend(
+        `
+        <div class="wingame alert alert-success alert-dismissible">
+            <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h3>`+player.name+` won the game with a score of `+player.totalScore+`</h3>
+        </div>
+        `
+    );
+    $("#panel-player1").addClass("panel-disable");
+    $("#p1-roll-button").addClass("button-disable");
+    $("#p1-hold-button").addClass("button-disable");
+    $("#panel-player2").addClass("panel-disable");
+    $("#p2-roll-button").addClass("button-disable");
+    $("#p2-hold-button").addClass("button-disable");
 }
 
 
@@ -49,12 +63,11 @@ $("#p1-roll-button").click(
         var rolledDice=playerOne.roll();
         $(".p1-rolled").text("You rolled:"+rolledDice);
         $(".p1-session-score").text("Your session score:"+playerOne.sessionScore);
-        if(rolledDice>1){
+        if(rolledDice===1){$("#p1-hold-button").trigger("click");}
+        if(playerOne.sessionScore+playerOne.totalScore >= playerOne.winScore){
+            return winGame(playerOne)
+        }
 
-        }
-        else{
-            $("#p1-hold-button").trigger("click");
-        }
     }
 )
 
@@ -63,11 +76,9 @@ $("#p2-roll-button").click(
         var rolledDice=playerTwo.roll();
         $(".p2-rolled").text("You rolled:"+rolledDice);
         $(".p2-session-score").text("Your session score:"+playerTwo.sessionScore);
-        if(rolledDice>1){
-
-        }
-        else{
-            $("#p2-hold-button").trigger("click");
+        if(rolledDice===1){ $("#p2-hold-button").trigger("click");}
+        if(playerTwo.sessionScore+playerTwo.totalScore >= playerTwo.winScore){
+            return winGame(playerTwo)
         }
     }
 )
