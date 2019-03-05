@@ -11,3 +11,14 @@
     background-color: grey;
     opacity: .8;
   }
+
+  body{
+    background-image:url("https://images.wallpaperscraft.com/image/dice_dices_hand_121843_2560x1440.jpg");
+    background-size: cover;
+  }
+  .h1{
+    font-size:150px;
+    font-family:Satisfy;
+    color:white;
+    margin-left:33.5%;
+  }
